@@ -19,43 +19,87 @@
 			var audio  =  new Audio("RadioPresets/default.mp3");
 			var police = new Audio("RadioPresets/police.mp3");
 
+			var signoff = new Audio("RadioPresets/signoff.mp3");
+
+			var cancel = false;
+
 			function startRadio()
 			{
-				audio.pause();
-				police.pause();
+				if(cancel == false)
+				{
+					audio.pause();
+					police.pause();
+					var d = new Date();
+					d.getHours();
+					d.getMinutes(); 
+					d.getSeconds(); 
+
+					var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+
+					for(var a = i; a > 4427; a -= 4427)
+					{
+						i -= 4427
+					}
+					audio.currentTime = i;
+					audio.play();
+				}
+
+				setInterval(function(){
 				var d = new Date();
 				d.getHours();
-				d.getMinutes(); 
-				d.getSeconds(); 
-
-				var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
-
-				for(var a = i; a > 4427; a -= 4427)
+				if(cancel == false)
 				{
-					i -= 4427
+					if(d.getHours() == 23)
+					{
+						cancel = true;
+						audio.pause();
+						police.pause();
+						signoff.currentTime = d.getMinutes() * 60 + d.getSeconds();
+						signoff.play();
+					}
 				}
-				audio.currentTime = i;
-				audio.play();
+			},1);
 			}
 
 			function startPolice()
 			{
-				audio.pause();
-				police.pause();
+				if(cancel == false)
+				{
+					audio.pause();
+					police.pause();
+					var d = new Date();
+					d.getHours();
+					d.getMinutes(); 
+					d.getSeconds(); 
+
+					var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+
+					for(var a = i; a > 1087; a -= 1087)
+					{
+						i -= 1087
+					}
+					police.currentTime = i;
+					police.play();
+				}
+
+				setInterval(function(){
 				var d = new Date();
 				d.getHours();
-				d.getMinutes(); 
-				d.getSeconds(); 
-
-				var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
-
-				for(var a = i; a > 1087; a -= 1087)
+				if(cancel == false)
 				{
-					i -= 1087
+					if(d.getHours() == 23)
+					{
+						cancel = true;
+						audio.pause();
+						police.pause();
+						signoff.currentTime = d.getMinutes() * 60 + d.getSeconds();
+						signoff.play();
+					}
 				}
-				police.currentTime = i;
-				police.play();
+			},1);
 			}
+
+			
 		</script>
 	</body>
 </html>
