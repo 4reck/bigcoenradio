@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Big Coen Radio</title>
+	</head>
+	<body>
+		<h1 style="text-align: center">Big Coen Radio</h1>
+		Default Radio
+		<button onclick="startRadio()">Start Radio</button>
+		<br>
+		Police Radio
+		<button onclick="startPolice()">Start Radio</button>
+		<script>
+			var d = new Date();
+			d.getHours();
+			d.getMinutes(); 
+			d.getSeconds(); 
+			
+			var audio  =  new Audio("RadioPresets/default.mp3");
+			var police = new Audio("RadioPresets/police.mp3");
+
+			function startRadio()
+			{
+				audio.pause();
+				police.pause();
+				var d = new Date();
+				d.getHours();
+				d.getMinutes(); 
+				d.getSeconds(); 
+
+				var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+
+				for(var a = i; a > 4427; a -= 4427)
+				{
+					i -= 4427
+				}
+				audio.currentTime = i;
+				audio.play();
+			}
+
+			function startPolice()
+			{
+				audio.pause();
+				police.pause();
+				var d = new Date();
+				d.getHours();
+				d.getMinutes(); 
+				d.getSeconds(); 
+
+				var i = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+
+				for(var a = i; a > 1087; a -= 1087)
+				{
+					i -= 1087
+				}
+				police.currentTime = i;
+				police.play();
+			}
+		</script>
+	</body>
+</html>
